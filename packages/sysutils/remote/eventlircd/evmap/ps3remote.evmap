@@ -27,12 +27,12 @@ KEY_BLUE         = KEY_BLUE             # Blue
 KEY_INFO         = KEY_INFO             # Display
 KEY_MENU         = KEY_MENU             # Top Menu
 KEY_CONTEXT_MENU = KEY_EPG              # Pop UP/MENU
-KEY_ESC          = KEY_EXIT             # Return
+KEY_ESC          = KEY_RADIO            # Return
 
 KEY_BACK         = KEY_EXIT             # Back
 KEY_OPTION       = KEY_OPTION           # Options
 KEY_SCREEN       = KEY_SCREEN           # View
-BTN_0            = KEY_EXIT             # X
+BTN_0            = KEY_TEXT             # X
 
 KEY_UP           = KEY_UP               # Direction Up
 KEY_DOWN         = KEY_DOWN             # Direction Down
@@ -46,7 +46,7 @@ BTN_THUMBL       = KEY_MUTE             # L3 -> Mute
 
 KEY_HOMEPAGE     = KEY_MEDIA            # PS3 Menu
 KEY_SELECT       = KEY_RECORD           # Select
-BTN_START        = KEY_OK               # Start
+BTN_START        = KEY_PVR              # Start
 
 BTN_TR           = KEY_CHANNELUP        # R1 -> Channel Up
 BTN_TR2          = KEY_CHANNELDOWN      # R2 -> Channel down
