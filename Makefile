@@ -14,6 +14,12 @@ image:
 image-efi:
 	./scripts/image mkimage efi
 
+unraid:
+	./scripts/unraid-image unraid-mkimage
+
+unraid-efi:
+	./scripts/unraid-image unraid-mkimage efi
+
 noobs:
 	./scripts/image noobs
 
