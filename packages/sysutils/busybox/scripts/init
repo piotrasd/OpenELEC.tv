@@ -27,6 +27,7 @@
   /bin/busybox mkdir -p /flash
   /bin/busybox mkdir -p /sysroot
   /bin/busybox mkdir -p /storage
+  /bin/busybox mkdir -p /unraid
 
   # mount all needed special filesystems
   /bin/busybox mount -t devtmpfs devtmpfs /dev
@@ -281,6 +282,13 @@
     mount_common "$NFS_EXPORT" "$2" "$3,nolock,soft,timeo=3,retrans=2,rsize=32768,wsize=32768,$NFS_OPTIONS" "nfs"
   }
 
+  mount_virtfs() {
+    # Mount VIRTFS export
+    VIRTFS_TAG="${1%%,*}"
+
+    mount_common "$VIRTFS_TAG" "$2" "trans=virtio,version=9p2000.L,posixacl" "9p"
+  }
+
   mount_part() {
     # Mount a local or network filesystem
     # $1:[TYPE=]target, $2:mountpoint, $3:mount options, [$4:fs type]
@@ -300,6 +308,9 @@
         ;;
       NFS=*)
         MOUNT_CMD="mount_nfs"
+        ;;
+      VIRTFS=*)
+        MOUNT_CMD="mount_virtfs"
         ;;
       *)
         error "mount_part" "Unknown filesystem $1"
@@ -595,6 +606,9 @@
     if [ -n "$disk" ]; then
       mount --move /storage /sysroot/storage
     fi
+
+    mount_virtfs "unraid" "/unraid"
+    mount --move /unraid /sysroot/unraid
 
     if [ ! -d "/sysroot/lib/modules/$(uname -r)/" -a -f "/sysroot/usr/lib/systemd/systemd" ]; then
       echo ""
